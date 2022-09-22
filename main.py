@@ -5,35 +5,40 @@ import requests
 import cv2
 import time
 
-num = int(input("Ingrese la cantidad de gif que quiere ver: "))
+def run():
 
-for i in range(num):
+    num = int(input("Ingrese la cantidad de gif que quiere ver: "))
 
-    #descarga de la imagen/gif
-    
-    f = open("gato.gif","wb") 
-    response = requests.get("https://cataas.com/cat/gif") #consulta a la pagina de gif aleatorios
-    f.write(response.content)
-    f.close()
+    for i in range(num):
 
-    for i in range(2): #repeticion del gif para visualizarlo mejor
+        #descarga de la imagen/gif
+        
+        f = open("gato.gif","wb") 
+        response = requests.get("https://cataas.com/cat/gif") #consulta a la pagina de gif aleatorios
+        f.write(response.content)
+        f.close()
 
-        gif = cv2.VideoCapture("gato.gif")
+        for i in range(2): #repeticion del gif para visualizarlo mejor
 
-        #Abrir y mostrar gif
+            gif = cv2.VideoCapture("gato.gif")
 
-        while (gif.isOpened()):
-            res, frame = gif.read() #lee imagen x imagen
+            #Abrir y mostrar gif
 
-            if res == False: #si deja de tener fotogramas o imagenes a mostrar se cierra
-                
-                break
+            while (gif.isOpened()):
+                res, frame = gif.read() #lee imagen x imagen
 
-            cv2.imshow("gato", frame)
+                if res == False: #si deja de tener fotogramas o imagenes a mostrar se cierra
+                    
+                    break
 
-            cv2.waitKey(1)
+                cv2.imshow("gato", frame)
 
-            time.sleep(1/30) #delay para que funcione a 30fps
+                cv2.waitKey(1)
+
+                time.sleep(1/30) #delay para que funcione a 30fps
+
+if __name__ == "__main__":
+    run()
 
 gif.release()
 cv2.destroyAllWindows
