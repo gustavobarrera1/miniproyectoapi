@@ -30,9 +30,7 @@ def run():
             while gif.isOpened():
                 res, frame = gif.read()  # lee imagen x imagen
 
-                if (
-                    res == False
-                ):  # si deja de tener fotogramas o imagenes a mostrar se cierra
+                if res == False:  # si deja de tener fotogramas, cierra
 
                     break
 
